@@ -1,0 +1,14 @@
+{
+    "id": "dofus129",
+    "name": "dofus129",
+    "description": "Plugin for Azuriom",
+    "version": "1.0.0",
+    "url": "https://azuriom.com",
+    "authors": [
+        "Azuriom"
+    ],
+    "providers": [
+        "\\Azuriom\\Plugin\\Dofus129\\Providers\\Dofus129ServiceProvider",
+        "\\Azuriom\\Plugin\\Dofus129\\Providers\\RouteServiceProvider"
+    ]
+}
