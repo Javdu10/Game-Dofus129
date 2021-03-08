@@ -73,7 +73,9 @@ class Dofus129ServiceProvider extends BasePluginServiceProvider
 
         $this->registerUserNavigation();
 
-        //
+        $config = config('database.connections.mysql');
+        config(['database.connections.dofus' => $config]);
+
     }
 
     /**
@@ -96,7 +98,15 @@ class Dofus129ServiceProvider extends BasePluginServiceProvider
     protected function adminNavigation()
     {
         return [
-            //
+            'flyff' => [
+                'name' => 'Dofus 1.29',
+                'type' => 'dropdown',
+                'icon' => 'fas fa-gamepad',
+                'route' => 'dofus.admin.*',
+                'items' => [
+                    'dofus129.admin.index' => 'Settings',
+                ],
+            ],
         ];
     }
 
