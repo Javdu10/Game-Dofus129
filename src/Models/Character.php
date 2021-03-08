@@ -41,4 +41,52 @@ class Character extends Model
 
         return $connection;
     }
+
+    public function getNameAttribute()
+    {
+        return $this->attributes[setting('dofus129_accounts_nameCol') ?? 'name'];
+    }
+
+    public function getLevelAttribute()
+    {
+        return $this->attributes[setting('dofus129_accounts_levelCol') ?? 'level'];
+    }
+
+    public function getExperienceAttribute()
+    {
+        return $this->attributes[setting('dofus129_accounts_experienceCol') ?? 'xp'];
+    }
+
+    public function getHonorAttribute()
+    {
+        try {
+            $honor = $this->attributes[setting('dofus129_accounts_honorCol') ?? 'honor'];
+        } catch (\Throwable $th) {
+            $honor = 'error';
+        }
+        return $honor;
+    }
+
+    public function getAlignementAttribute()
+    {
+        try {
+            $name = $this->attributes[setting('dofus129_accounts_alignementCol') ?? 'alignement'];
+        } catch (\Throwable $th) {
+            $name = 'none';
+        }
+        return plugin_asset('dofus129', "img/icones/$name.png");
+    }
+
+    public function getAvatarAttribute()
+    {
+        try {
+            $sexe = $this->attributes[setting('dofus129_accounts_sexeCol') ?? 'sexe'] == 0 ? 'm' : 'f';
+            $class = $this->attributes[setting('dofus129_accounts_classCol') ?? 'class'];
+            $name = $class.'_'.$sexe;
+        } catch (\Throwable $th) {
+            $name = 'none';
+        }
+
+        return plugin_asset('dofus129', "img/$name.png");
+    }
 }

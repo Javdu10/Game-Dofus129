@@ -23,7 +23,13 @@ class AdminAccountRequest extends FormRequest
             'dofus129_characters_databaseName' => ['nullable', 'string'],
             'dofus129_characters_tableName' => ['nullable', 'string'],
             'dofus129_characters_primaryKey' => ['nullable', 'string'],
+            'dofus129_accounts_nameCol' => ['nullable', 'string'],
+            'dofus129_accounts_sexeCol' => ['nullable', 'string'],
+            'dofus129_accounts_classCol' => ['nullable', 'string'],
+            'dofus129_accounts_levelCol' => ['nullable', 'string'],
             'dofus129_accounts_experienceCol' => ['nullable', 'string'],
+            'dofus129_accounts_alignementCol' => ['nullable', 'string'],
+            'dofus129_accounts_honorCol' => ['nullable', 'string'],
         ];
     }
 }
