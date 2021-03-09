@@ -19,6 +19,7 @@ class AdminAccountRequest extends FormRequest
             'dofus129_accounts_tableName' => ['nullable', 'string'],
             'dofus129_accounts_primaryKey' => ['nullable', 'string'],
             'dofus129_accounts_foreignKey' => ['nullable', 'string'],
+            'dofus129_accounts_loggedCol' => ['nullable', 'string'],
 
             'dofus129_characters_databaseName' => ['nullable', 'string'],
             'dofus129_characters_tableName' => ['nullable', 'string'],

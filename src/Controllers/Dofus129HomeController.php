@@ -14,8 +14,6 @@ class Dofus129HomeController extends Controller
      */
     public function index()
     {
-        $characters = Character::orderBy(setting('dofus129_accounts_experienceCol') ?? 'xp')->get();
-        dd($characters);
         return view('dofus129::index');
     }
 }

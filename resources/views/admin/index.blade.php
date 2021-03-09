@@ -57,7 +57,26 @@
                     </div>
                 </div>
             </div>
+            <div class="form-group mt-3">
+                <div class="row">
+                    <div class="col">
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" id="registerInput" @if(setting('dofus129_create_account_on_registration')) checked @endif name="dofus129_create_account_on_registration" aria-describedby="registerInput">
+                            <label class="custom-control-label" for="registerInput">Create an in-game account on registration</label>
+                        </div>
+            
+                        <small id="registerInput" class="form-text">Make sure to fill correctly the table of accounts first</small>
+                    </div>
+                    <div class="col">
+                            <a class="btn btn-primary text-white" onclick="this.preventDefault;document.querySelector('#account_creation_form').submit();" aria-describedby="account_creation">Test account creation</a>
+                            <small id="account_creation" class="form-text">Test only after saving your settings!</small>
+                    </div>
+                </div>
+                
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
+        <form id="account_creation_form" action="{{route('dofus129.admin.test_account_creation')}}" method="post">@csrf</form>
     </div>
 </div>
 @endsection

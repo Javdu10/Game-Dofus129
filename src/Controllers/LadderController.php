@@ -14,7 +14,7 @@ class LadderController extends Controller
      */
     public function pvm()
     {
-        $characters = Character::orderBy(setting('dofus129_accounts_experienceCol') ?? 'xp')->paginate(15);
+        $characters = Character::orderBy(setting('dofus129_accounts_experienceCol') ?? 'xp', 'desc')->paginate(15);
 
         return view('dofus129::ladder.pvm', ['characters'=>$characters]);
     }
@@ -22,7 +22,7 @@ class LadderController extends Controller
     public function pvp()
     {
         try {
-            $characters = Character::orderBy(setting('dofus129_accounts_honorCol') ?? 'honor')->paginate(15);
+            $characters = Character::orderBy(setting('dofus129_accounts_honorCol') ?? 'honor', 'desc')->paginate(15);
         } catch (\Throwable $th) {
             $characters = Character::paginate(15);
         }

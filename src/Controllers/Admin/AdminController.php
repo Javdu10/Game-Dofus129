@@ -21,8 +21,15 @@ class AdminController extends Controller
 
     public function updateSettings(AdminAccountRequest $request)
     {
-        Setting::updateSettings($request->validated());
+        Setting::updateSettings($request->validated() + [
+            'dofus129_create_account_on_registration' => $request->filled('dofus129_create_account_on_registration')
+        ]);
 
         return redirect()->route('dofus129.admin.index')->with('success', 'Settings updated!');
+    }
+
+    public function testAccountCreation()
+    {
+        return redirect()->route('dofus129.admin.index')->with('success', 'Account success!');
     }
 }

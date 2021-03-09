@@ -47,7 +47,7 @@ class Dofus129ServiceProvider extends BasePluginServiceProvider
      */
     public function register()
     {
-        $this->registerMiddlewares();
+        //$this->registerMiddlewares();
 
         //
     }
@@ -65,13 +65,13 @@ class Dofus129ServiceProvider extends BasePluginServiceProvider
 
         $this->loadTranslations();
 
-        $this->loadMigrations();
+        //$this->loadMigrations();
 
         $this->registerRouteDescriptions();
 
         $this->registerAdminNavigation();
 
-        $this->registerUserNavigation();
+        //$this->registerUserNavigation();
 
         $config = config('database.connections.mysql');
         config(['database.connections.dofus' => $config]);
@@ -86,7 +86,8 @@ class Dofus129ServiceProvider extends BasePluginServiceProvider
     protected function routeDescriptions()
     {
         return [
-            //
+            'dofus129.ladder.pvm' => 'Ladder PVM',
+            'dofus129.ladder.pvp' => 'Ladder PVP'
         ];
     }
 
