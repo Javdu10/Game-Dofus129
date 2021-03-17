@@ -51,8 +51,7 @@
                     </div>
                     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                         <div class="card-body">
-                            And lastly, the placeholder content for the third and final accordion panel. This panel is
-                            hidden by default.
+                            @include('dofus129::admin.partials.database')
                         </div>
                     </div>
                 </div>
@@ -74,6 +73,16 @@
                 </div>
                 
             </div>
+
+            <div class="form-group row">
+                <label for="dofus129_customHashalgo" class="col-sm-2 col-form-label">Custom hash algo :</label>
+                <div class="col-sm-10">
+                    <input name="dofus129_customHashalgo" value="{{ old('dofus129_customHashalgo', setting('dofus129_customHashalgo')) }}" type="text" class="form-control" id="dofus129_customHashalgo" placeholder="pseudo" aria-describedby="hashHelp">
+                    <small id="hashHelp" class="form-text text-muted">You have access the to <code>$password</code> variable.</small>
+                </div>
+                
+            </div>
+
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
         <form id="account_creation_form" action="{{route('dofus129.admin.test_account_creation')}}" method="post">@csrf</form>

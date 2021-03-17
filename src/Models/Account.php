@@ -8,38 +8,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class Account extends Model
 {
-    protected $connection = 'dofus';
-
-    public function getDatabaseName()
-    {
-        return setting('dofus129_accounts_databaseName') ?? config('database.connections.dofus.database');
-    }
+    protected $connection = 'dofus_accounts';
+    public $timestamps = false;
 
     public function getTable()
     {
-        return setting('dofus129_accounts_tableName') ?? Str::snake(Str::pluralStudly(class_basename($this)));
+        return setting('dofus129_accounts_tableName');
     }
 
     public function getKeyName()
     {
-        return setting('dofus129_accounts_primaryKey') ?? $this->primaryKey;
+        return setting('dofus129_accounts_primaryKey');
     }
 
     public function getForeignKey()
     {
-        return setting('dofus129_accounts_foreignKey') ?? Str::snake(class_basename($this)).'_'.$this->getKeyName();
-    }
-
-    public function getConnection()
-    {
-        $database = config('database.connections.dofus.database');
-        config(['database.connections.dofus.database' => $this->getDatabaseName()]);
-        DB::purge('dofus');
-
-        $connection = static::resolveConnection($this->getConnectionName());
-        config(['database.connections.dofus.database' => $database]);
-
-        return $connection;
+        return setting('dofus129_accounts_foreignKey');
     }
 
     public function characters()

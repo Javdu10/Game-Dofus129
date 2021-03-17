@@ -8,12 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class Character extends Model
 {
-    protected $connection = 'dofus';
-
-    public function getDatabaseName()
-    {
-        return setting('dofus129_characters_databaseName') ?? config('database.connections.dofus.database');
-    }
+    protected $connection = 'dofus_characters';
 
     public function getTable()
     {
@@ -25,67 +20,38 @@ class Character extends Model
         return setting('dofus129_characters_primaryKey') ?? $this->primaryKey;
     }
 
-    public function getForeignKey()
-    {
-        return setting('dofus129_characters_foreignKey') ?? Str::snake(class_basename($this)).'_'.$this->getKeyName();
-    }
-
-    public function getConnection()
-    {
-        $database = config('database.connections.dofus.database');
-        config(['database.connections.dofus.database' => $this->getDatabaseName()]);
-        DB::purge('dofus');
-
-        $connection = static::resolveConnection($this->getConnectionName());
-        config(['database.connections.dofus.database' => $database]);
-
-        return $connection;
-    }
-
     public function getNameAttribute()
     {
-        return $this->attributes[setting('dofus129_accounts_nameCol') ?? 'name'];
+        return $this->attributes[setting('dofus129_characters_nameCol')];
     }
 
     public function getLevelAttribute()
     {
-        return $this->attributes[setting('dofus129_accounts_levelCol') ?? 'level'];
+        return $this->attributes[setting('dofus129_characters_levelCol')];
     }
 
     public function getExperienceAttribute()
     {
-        return $this->attributes[setting('dofus129_accounts_experienceCol') ?? 'xp'];
+        return $this->attributes[setting('dofus129_characters_experienceCol')];
     }
 
     public function getHonorAttribute()
     {
-        try {
-            $honor = $this->attributes[setting('dofus129_accounts_honorCol') ?? 'honor'];
-        } catch (\Throwable $th) {
-            $honor = 'error';
-        }
-        return $honor;
+        return $this->attributes[setting('dofus129_characters_honorCol')];
     }
 
     public function getAlignementAttribute()
     {
-        try {
-            $name = $this->attributes[setting('dofus129_accounts_alignementCol') ?? 'alignement'];
-        } catch (\Throwable $th) {
-            $name = 'none';
-        }
+            $name = $this->attributes[setting('dofus129_characters_alignementCol')];
+
         return plugin_asset('dofus129', "img/icones/$name.png");
     }
 
     public function getAvatarAttribute()
     {
-        try {
-            $sexe = $this->attributes[setting('dofus129_accounts_sexeCol') ?? 'sexe'] == 0 ? 'm' : 'f';
-            $class = $this->attributes[setting('dofus129_accounts_classCol') ?? 'class'];
+            $sexe = $this->attributes[setting('dofus129_characters_sexeCol')] == 0 ? 'm' : 'f';
+            $class = $this->attributes[setting('dofus129_characters_classCol')];
             $name = $class.'_'.$sexe;
-        } catch (\Throwable $th) {
-            $name = 'none';
-        }
 
         return plugin_asset('dofus129', "img/$name.png");
     }
