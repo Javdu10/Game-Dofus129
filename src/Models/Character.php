@@ -42,16 +42,16 @@ class Character extends Model
 
     public function getAlignementAttribute()
     {
-            $name = $this->attributes[setting('dofus129_characters_alignementCol')];
+        $name = $this->attributes[setting('dofus129_characters_alignementCol')];
 
         return plugin_asset('dofus129', "img/icones/$name.png");
     }
 
     public function getAvatarAttribute()
     {
-            $sexe = $this->attributes[setting('dofus129_characters_sexeCol')] == 0 ? 'm' : 'f';
-            $class = $this->attributes[setting('dofus129_characters_classCol')];
-            $name = $class.'_'.$sexe;
+        $sexe = $this->attributes[setting('dofus129_characters_sexeCol')] == 0 ? 'm' : 'f';
+        $class = $this->attributes[setting('dofus129_characters_classCol')];
+        $name = $class.'_'.$sexe;
 
         return plugin_asset('dofus129', "img/$name.png");
     }

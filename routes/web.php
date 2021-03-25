@@ -16,8 +16,6 @@ use Azuriom\Plugin\Dofus129\Controllers\Dofus129HomeController;
 |
 */
 
-Route::get('/', [Dofus129HomeController::class, 'index']);
-
 Route::prefix('ladder')->name('ladder.')->group(function(){
     Route::get('/pvm', [LadderController::class, 'pvm'])->name('pvm');
     Route::get('/pvp', [LadderController::class, 'pvp'])->name('pvp');
