@@ -14,14 +14,14 @@ class LadderController extends Controller
      */
     public function pvm()
     {
-        $characters = Character::orderBy(setting('dofus129_accounts_experienceCol'), 'desc')->paginate(15);
+        $characters = Character::orderBy(setting('dofus129_characters_experienceCol'), 'desc')->paginate(15);
 
         return view('dofus129::ladder.pvm', ['characters'=>$characters]);
     }
 
     public function pvp()
     {
-        $characters = Character::orderBy(setting('dofus129_accounts_honorCol'), 'desc')->paginate(15);
+        $characters = Character::orderBy(setting('dofus129_characters_honorCol'), 'desc')->paginate(15);
 
         return view('dofus129::ladder.pvp', ['characters'=>$characters]);
     }
