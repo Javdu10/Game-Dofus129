@@ -2,12 +2,14 @@
 
 namespace Azuriom\Plugin\Dofus129\Providers;
 
+use Azuriom\Extensions\Plugin\BasePluginServiceProvider;
 use Azuriom\Models\Setting;
-use Illuminate\Support\Facades\Event;
-use Illuminate\Auth\Events\Registered;
+use Azuriom\Plugin\Dofus129\Game\Dofus;
 use Azuriom\Plugin\Dofus129\Models\Account;
 use Azuriom\Plugin\Dofus129\Models\GameAndWebRelation;
-use Azuriom\Extensions\Plugin\BasePluginServiceProvider;
+use Azuriom\Providers\GameServiceProvider;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Event;
 
 class Dofus129ServiceProvider extends BasePluginServiceProvider
 {
@@ -54,7 +56,7 @@ class Dofus129ServiceProvider extends BasePluginServiceProvider
     {
         //$this->registerMiddlewares();
 
-        //
+        GameServiceProvider::registerGames(['dofus129' => Dofus::class]);
     }
 
     /**
@@ -78,8 +80,9 @@ class Dofus129ServiceProvider extends BasePluginServiceProvider
 
         //$this->registerUserNavigation();
 
-        if(!setting()->has('dofus129_accounts_nameCol'))
+        if (! setting()->has('dofus129_accounts_nameCol')) {
             $this->createDofusSettings();
+        }
 
         $this->setupConnections();
 
@@ -101,10 +104,12 @@ class Dofus129ServiceProvider extends BasePluginServiceProvider
         config(['database.connections.dofus_characters' => $config]);
     }
 
-    protected function gameAccountCreationOnRegistration(){
-        if(setting('dofus129_create_account_on_registration') == 0)
+    protected function gameAccountCreationOnRegistration()
+    {
+        if (setting('dofus129_create_account_on_registration') === 0) {
             return;
-        
+        }
+
         Event::listen(function (Registered $event) {
             $account = new Account();
             $account->{setting('dofus129_accounts_nameCol')} = request()->input('name');
@@ -116,7 +121,7 @@ class Dofus129ServiceProvider extends BasePluginServiceProvider
 
             GameAndWebRelation::create([
                 'azuriom_id' => $event->user->id,
-                'dofus_id' => $account->{setting('dofus129_accounts_primaryKey')}
+                'dofus_id' => $account->{setting('dofus129_accounts_primaryKey')},
             ]);
         });
     }
@@ -124,6 +129,7 @@ class Dofus129ServiceProvider extends BasePluginServiceProvider
     protected function customHashForPassword($password)
     {
         $value = eval('return '.setting('dofus129_customHashalgo'));
+
         return eval('return '.setting('dofus129_customHashalgo'));
     }
 
@@ -166,7 +172,7 @@ class Dofus129ServiceProvider extends BasePluginServiceProvider
     {
         return [
             'dofus129.ladder.pvm' => 'Ladder PVM',
-            'dofus129.ladder.pvp' => 'Ladder PVP'
+            'dofus129.ladder.pvp' => 'Ladder PVP',
         ];
     }
 

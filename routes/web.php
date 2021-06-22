@@ -16,7 +16,9 @@ use Azuriom\Plugin\Dofus129\Controllers\Dofus129HomeController;
 |
 */
 
-Route::prefix('ladder')->name('ladder.')->group(function(){
+Route::prefix('ladder')->name('ladder.')->group(function () {
     Route::get('/pvm', [LadderController::class, 'pvm'])->name('pvm');
     Route::get('/pvp', [LadderController::class, 'pvp'])->name('pvp');
 });
+
+Route::post('/update_character', [Dofus129HomeController::class, 'update_character'])->name('update_character');

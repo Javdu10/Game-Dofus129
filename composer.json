@@ -5,6 +5,9 @@
     "autoload": {
         "psr-4": {
             "Azuriom\\Plugin\\Dofus129\\": "src/"
-        }
+        },
+        "files": [
+            "src/helpers.php"
+        ]
     }
 }
