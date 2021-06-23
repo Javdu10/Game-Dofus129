@@ -2,7 +2,6 @@
 
 namespace Azuriom\Plugin\Dofus129\Requests;
 
-use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class AdminAccountRequest extends FormRequest
@@ -43,6 +42,8 @@ class AdminAccountRequest extends FormRequest
             'dofus129_characters_experienceCol' => ['nullable', 'string'],
             'dofus129_characters_alignementCol' => ['nullable', 'string'],
             'dofus129_characters_honorCol' => ['nullable', 'string'],
+
+            'dofus129_azuriom_password' => ['nullable', 'string'],
         ];
     }
 }

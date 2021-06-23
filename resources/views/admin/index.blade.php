@@ -83,6 +83,14 @@
                 
             </div>
 
+            <div class="form-group row">
+                <label for="dofus129_azuriom_password" class="col-sm-2 col-form-label">Password for instant commands :</label>
+                <div class="col-sm-10">
+                    <input name="dofus129_azuriom_password" value="{{ old('dofus129_azuriom_password', setting('dofus129_azuriom_password', 'password')) }}" type="text" class="form-control" id="dofus129_azuriom_password" placeholder="">
+                </div>
+                
+            </div>
+
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
         <form id="account_creation_form" action="{{route('dofus129.admin.test_account_creation')}}" method="post">@csrf</form>

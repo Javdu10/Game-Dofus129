@@ -60,7 +60,7 @@ class DofusServerBridge extends ServerBridge
     */
     private function xor_this($string)
     {
-        $key = 'password';
+        $key = setting('dofus129_azuriom_password', 'password');
         $text = $string;
         $outText = '';
         for ($i = 0; $i < strlen($text);) {
