@@ -78,7 +78,10 @@
                 <label for="dofus129_customHashalgo" class="col-sm-2 col-form-label">Custom hash algo :</label>
                 <div class="col-sm-10">
                     <input name="dofus129_customHashalgo" value="{{ old('dofus129_customHashalgo', setting('dofus129_customHashalgo')) }}" type="text" class="form-control" id="dofus129_customHashalgo" placeholder="pseudo" aria-describedby="hashHelp">
-                    <small id="hashHelp" class="form-text text-muted">You have access the to <code>$password</code> variable.</small>
+                    <small id="hashHelp" class="form-text text-muted">
+                        It's PHP code that will go through the <code>eval()</code> function <br>
+                        You have access the to <code>$password</code> variable.
+                    </small>
                 </div>
                 
             </div>
