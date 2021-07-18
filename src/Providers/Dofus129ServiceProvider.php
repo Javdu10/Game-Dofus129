@@ -2,14 +2,15 @@
 
 namespace Azuriom\Plugin\Dofus129\Providers;
 
-use Azuriom\Extensions\Plugin\BasePluginServiceProvider;
 use Azuriom\Models\Setting;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Auth\Events\Registered;
 use Azuriom\Plugin\Dofus129\Game\Dofus;
+use Azuriom\Providers\GameServiceProvider;
 use Azuriom\Plugin\Dofus129\Models\Account;
 use Azuriom\Plugin\Dofus129\Models\GameAndWebRelation;
-use Azuriom\Providers\GameServiceProvider;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Support\Facades\Event;
+use Azuriom\Extensions\Plugin\BasePluginServiceProvider;
+use Azuriom\Plugin\Dofus129\Middlewares\EnsureInstalled;
 
 class Dofus129ServiceProvider extends BasePluginServiceProvider
 {
@@ -19,7 +20,7 @@ class Dofus129ServiceProvider extends BasePluginServiceProvider
      * @var array
      */
     protected $middleware = [
-        // \Azuriom\Plugin\Dofus129\Middleware\ExampleMiddleware::class,
+        EnsureInstalled::class,
     ];
 
     /**
@@ -67,7 +68,7 @@ class Dofus129ServiceProvider extends BasePluginServiceProvider
     public function boot()
     {
         // $this->registerPolicies();
-
+        $this->registerMiddlewares();
         $this->loadViews();
 
         $this->loadTranslations();
