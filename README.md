@@ -186,10 +186,11 @@ public class AzuriomCommands implements Runnable{
             BufferedReader in;
             try {
                 in = new BufferedReader (new InputStreamReader(this.socket.getInputStream()));
-                String command = in.readLine();
-
-                System.out.println("Command : "+command);
-                this.parseCommand(command.split(" "));
+                String command = null;
+                while ((command = in.readLine()) != null) {
+                    System.out.println("Command : "+command);
+                    this.parseCommand(command.split(" "));
+                }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
