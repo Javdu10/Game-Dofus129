@@ -213,7 +213,9 @@ public class AzuriomCommands implements Runnable{
 
  ```
  </details>
- 
+	
+ This class implements a secure socket connection using a self-signed SSL certificate.
+
  ### How to use it?
  
 - Change `KEYSTORE_PASSWORD` to a difficult password
