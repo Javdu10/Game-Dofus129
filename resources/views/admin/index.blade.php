@@ -86,17 +86,24 @@
                 
             </div>
 
-            <div class="form-group row">
-                <label for="dofus129_azuriom_password" class="col-sm-2 col-form-label">Password for instant commands :</label>
-                <div class="col-sm-10">
-                    <input name="dofus129_azuriom_password" value="{{ old('dofus129_azuriom_password', setting('dofus129_azuriom_password', 'password')) }}" type="text" class="form-control" id="dofus129_azuriom_password" placeholder="">
-                </div>
-                
-            </div>
-
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
         <form id="account_creation_form" action="{{route('dofus129.admin.test_account_creation')}}" method="post">@csrf</form>
+        
+        
+    </div>
+</div>
+
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <h6>Generate/Dowload certificate to use with in-game commands</h6>
+        @if ($certificate)
+            <a class="btn btn-success" href="{{route('dofus129.admin.certificate')}}">Download Certificate</a>
+            <a class="btn btn-warning" href="{{route('dofus129.admin.test-connection')}}">Test SSL connection to Game Server</a>
+            <a class="btn btn-danger" href="{{route('dofus129.admin.generate-certificate')}}">Click re-generate certificate</a>
+        @else
+            <a class="btn btn-primary" href="{{route('dofus129.admin.generate-certificate')}}">Click generate certificate</a>
+        @endif
     </div>
 </div>
 @endsection

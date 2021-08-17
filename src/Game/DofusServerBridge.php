@@ -32,43 +32,43 @@ class DofusServerBridge extends ServerBridge
             throw new RuntimeException('User is required to send commands.');
         }
 
-        $fp = fsockopen($this->server->address, $this->server->port, $errno, $errstr);
-        if (! $fp) {
+        $context = stream_context_create(
+            [
+                'ssl'=>[
+                    'local_cert'=> Storage::path('server.pem'),
+                    "verify_peer_name"=>false,
+                    'allow_self_signed' => true
+                ]
+            ]
+        );
+
+        $socket = stream_socket_client('ssl://'.$$this->server->address.':'.$this->server->port,
+            $errno,
+            $errstr,
+            $timeout,
+            STREAM_CLIENT_CONNECT,
+            $context
+        );
+
+        if (! $socket) {
             throw new RuntimeException("{$errstr} ({$errno})");
         }
 
         $idPlayer = session('m_idPlayer');
 
         if (empty($idPlayer)) {
-            $characters = \dofus_characters($user->id);
+            $characters = dofus_characters($user->id);
             $idPlayer = $characters[0]->getKey();
         }
 
         foreach ($commands as $command) {
-            $tmp = \str_replace('{player}', $idPlayer, $command);
-            $tmp = $this->xor_this($tmp)."\r\n";
-            fwrite($fp, $tmp, \strlen($tmp));
+            $tmp = str_replace('{player}', $idPlayer, $command);
+            $tmp .= "\n";
+            fwrite($socket, $tmp, strlen($tmp));
         }
 
-        if ($fp) {
-            fclose($fp);
+        if ($socket) {
+            fclose($socket);
         }
-    }
-
-    /*
-    * simple xor from https://stackoverflow.com/a/14673630
-    */
-    private function xor_this($string)
-    {
-        $key = setting('dofus129_azuriom_password', 'password');
-        $text = $string;
-        $outText = '';
-        for ($i = 0; $i < strlen($text);) {
-            for ($j = 0; ($j < strlen($key) && $i < strlen($text)); $j++,$i++) {
-                $outText .= $text[$i] ^ $key[$j];
-            }
-        }
-
-        return $outText;
     }
 }

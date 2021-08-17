@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [AdminController::class, 'index'])->name('index');
+Route::get('/certificate', [AdminController::class, 'certificate'])->name('certificate');
+Route::get('/generate-certificate', [AdminController::class, 'generateCertificate'])->name('generate-certificate');
+Route::get('/test-connection', [AdminController::class, 'testConnection'])->name('test-connection');
 
 Route::post('/', [AdminController::class, 'updateSettings'])->name('settings');
 
