@@ -2,10 +2,10 @@
     "id": "dofus129",
     "name": "dofus129",
     "description": "Plugin for Azuriom",
-    "version": "1.0.0",
+    "version": "0.1.0",
     "url": "https://azuriom.com",
     "authors": [
-        "Azuriom"
+        "Javdu10"
     ],
     "providers": [
         "\\Azuriom\\Plugin\\Dofus129\\Providers\\Dofus129ServiceProvider",
