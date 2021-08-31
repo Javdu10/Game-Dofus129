@@ -14,4 +14,4 @@ use Azuriom\Plugin\Dofus129\Controllers\InstallController;
 |
 */
 
-Route::get('/finish', [InstallController::class, 'index'])->name('index');
+Route::get('/', [InstallController::class, 'index'])->name('index');

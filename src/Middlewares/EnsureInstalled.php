@@ -23,10 +23,10 @@ class EnsureInstalled
             return $next($request); // Already installed
         }
 
-        if ($request->is('dofus129/install/*', '_debugbar/*')) {
+        if ($request->routeIs('dofus129.install.*') || $request->is('_debugbar/*')) {
             return $next($request);
         }
 
-        return response()->view('dofus129::install.index');
+        return redirect()->route('dofus129.install.index');
     }
 }

@@ -67,8 +67,8 @@ class Dofus129ServiceProvider extends BasePluginServiceProvider
      */
     public function boot()
     {
-        // $this->registerPolicies();
         $this->registerMiddlewares();
+
         $this->loadViews();
 
         $this->loadTranslations();
