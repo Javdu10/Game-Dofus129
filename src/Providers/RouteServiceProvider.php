@@ -30,7 +30,7 @@ class RouteServiceProvider extends BaseRouteServiceProvider
             ->group(plugin_path($this->plugin->id.'/routes/api.php'));
         
         if (! setting('dofus129_installed')) {
-            Route::prefix($this->plugin->id.'/install')
+            Route::prefix('install/'.$this->plugin->id)
                 ->middleware('web')
                 ->name($this->plugin->id.'.install.')
                 ->group(plugin_path($this->plugin->id.'/routes/install.php'));
