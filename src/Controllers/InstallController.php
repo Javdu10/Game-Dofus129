@@ -9,6 +9,8 @@ class InstallController extends Controller
 {
     public function index()
     {
+        Setting::updateSettings(['dofus129_installed' => 1]);
+
         return view('dofus129::install.index');
     }
 }
