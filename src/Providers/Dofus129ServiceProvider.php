@@ -10,7 +10,6 @@ use Azuriom\Providers\GameServiceProvider;
 use Azuriom\Plugin\Dofus129\Models\Account;
 use Azuriom\Plugin\Dofus129\Models\GameAndWebRelation;
 use Azuriom\Extensions\Plugin\BasePluginServiceProvider;
-use Azuriom\Plugin\Dofus129\Middlewares\EnsureInstalled;
 
 class Dofus129ServiceProvider extends BasePluginServiceProvider
 {
@@ -19,9 +18,7 @@ class Dofus129ServiceProvider extends BasePluginServiceProvider
      *
      * @var array
      */
-    protected $middleware = [
-        EnsureInstalled::class,
-    ];
+    protected $middleware = [];
 
     /**
      * The plugin's route middleware groups.
