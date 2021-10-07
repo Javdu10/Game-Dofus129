@@ -83,7 +83,7 @@ class Dofus129ServiceProvider extends BasePluginServiceProvider
         //     $this->createDofusSettings();
         // }
 
-        if (setting('dofus129_installed')) {
+        if (is_installed()) {
             $this->setupConnections();
             $this->gameAccountCreationOnRegistration();
         }
@@ -91,7 +91,7 @@ class Dofus129ServiceProvider extends BasePluginServiceProvider
 
     protected function setupConnections()
     {
-        $config = config('database.connections.mysql');
+        $config = config('database.connections.'.setting('dofus129_database_driver'));
         $config['host'] = setting('dofus129_database_host', $config['host']);
         $config['port'] = setting('dofus129_database_port', $config['port']);
         $config['username'] = setting('dofus129_database_username', $config['username']);
@@ -102,11 +102,12 @@ class Dofus129ServiceProvider extends BasePluginServiceProvider
 
         $config['database'] = setting('dofus129_characters_databaseName');
         config(['database.connections.dofus_characters' => $config]);
+        DB::purge();
     }
 
     protected function gameAccountCreationOnRegistration()
     {
-        if (setting('dofus129_create_account_on_registration') === 0) {
+        if (setting('dofus129_create_account_on_registration', 0) === 0) {
             return;
         }
 
