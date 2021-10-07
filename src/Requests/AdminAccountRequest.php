@@ -14,22 +14,9 @@ class AdminAccountRequest extends FormRequest
     public function rules()
     {
         return [
-            'dofus129_database_host' => ['nullable', 'string'],
-            'dofus129_database_port' => ['nullable', 'string'],
-            'dofus129_database_username' => ['nullable', 'string'],
-            'dofus129_database_password' => ['nullable', 'string'],
 
             'dofus129_customHashalgo' => ['required', 'string'],
 
-            'dofus129_accounts_databaseName' => ['nullable', 'string'],
-            'dofus129_accounts_tableName' => ['nullable', 'string'],
-            'dofus129_accounts_primaryKey' => ['nullable', 'string'],
-            'dofus129_accounts_foreignKey' => ['nullable', 'string'],
-            'dofus129_accounts_nameCol' => ['nullable', 'string'],
-            'dofus129_accounts_passwordCol' => ['nullable', 'string'],
-            'dofus129_accounts_pseudoCol' => ['nullable', 'string'],
-            'dofus129_accounts_questionCol' => ['nullable', 'string'],
-            'dofus129_accounts_answerCol' => ['nullable', 'string'],
             //'dofus129_accounts_loggedCol' => ['nullable', 'string'],
 
             'dofus129_characters_databaseName' => ['nullable', 'string'],

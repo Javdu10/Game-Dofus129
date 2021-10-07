@@ -10,6 +10,7 @@ use Azuriom\Providers\GameServiceProvider;
 use Azuriom\Plugin\Dofus129\Models\Account;
 use Azuriom\Plugin\Dofus129\Models\GameAndWebRelation;
 use Azuriom\Extensions\Plugin\BasePluginServiceProvider;
+use Illuminate\Support\Facades\DB;
 
 class Dofus129ServiceProvider extends BasePluginServiceProvider
 {
@@ -78,13 +79,14 @@ class Dofus129ServiceProvider extends BasePluginServiceProvider
 
         //$this->registerUserNavigation();
 
-        if (! setting()->has('dofus129_accounts_nameCol')) {
-            $this->createDofusSettings();
+        // if (! setting()->has('dofus129_accounts_nameCol')) {
+        //     $this->createDofusSettings();
+        // }
+
+        if (setting('dofus129_installed')) {
+            $this->setupConnections();
+            $this->gameAccountCreationOnRegistration();
         }
-
-        $this->setupConnections();
-
-        $this->gameAccountCreationOnRegistration();
     }
 
     protected function setupConnections()
@@ -126,8 +128,6 @@ class Dofus129ServiceProvider extends BasePluginServiceProvider
 
     protected function customHashForPassword($password)
     {
-        $value = eval('return '.setting('dofus129_customHashalgo'));
-
         return eval('return '.setting('dofus129_customHashalgo'));
     }
 

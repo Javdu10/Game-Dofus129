@@ -1,3 +1,28 @@
+# How to install?
+
+Install Azuriom then click `Dofus 1.29` when it ask you which game to choose.
+Follow the installation process, it's very easy.
+
+Depending on how is setup your database you might see errors like:
+
+```
+SQLSTATE[HY000]: General error: 1364 Field 'lastConnectionDate' doesn't have a default value (SQL: insert into `accounts` (`account`, `pseudo`, `pass`, `question`, `reponse`) values (TsO9QEd7, wGkv27uI, 7pcJXu8S, E2bQi60B, KVDr2lFM))
+```
+
+If you don't know how to fix this kind of error, look it up on google. 
+You either would need to set a default value or allow null values.
+
+# Created an in-game account but cannot login?
+
+Your emulator is probably using a custom hash for the password. It can be changed in the setting of the dofus plugin `Custom hash algo`.
+
+For example if your emulator use a salted password with md5 you can write :
+
+- `md5($password.'my-salt');`
+
+
+
+
 # How can I have instant commands on my dofus server with Azuriom?
 
 ## Server side (java, but you can code the equivalent in any other language)
@@ -220,14 +245,15 @@ public class AzuriomCommands implements Runnable{
  
 - Change `KEYSTORE_PASSWORD` to a difficult password
 - In the CMS go to the settings of the Dofus plugin and click `Generate certificate`
-- From your VPS download the certificate and save it somewhere then change `CERTIFICATE_PATH` to where you saved it
+- From your VPS download the certificate and save it somewhere. Then change `CERTIFICATE_PATH` in the `AzuriomCommands.java` to the path you save the certificate
 - Add this code to your Game server source code : 
 ```java
 	new AzuriomCommands(2333).start(); // 2333 can be any available port on your machine
 ```
 ## In Azuriom
 
-- Register you server in the server section of the admin panel
-- go to the shop plugin, add packages and add commands like `give {player} xxx 1` where xxx is an item id
+- Make sure to register your server in the server section of the Azuriom admin panel
 
-Make sure to select the server you registered in the package you're creating in the shop!
+- Make sure to select the server you registered in the package that you're creating in the shop!
+
+- create the commands you need in `parseCommand` function and write them in the command section of a package

@@ -13,12 +13,12 @@ class Account extends Model
 
     public function getTable()
     {
-        return setting('dofus129_accounts_tableName');
+        return $this->table ?? setting('dofus129_accounts_tableName');
     }
 
     public function getKeyName()
     {
-        return setting('dofus129_accounts_primaryKey');
+        return $this->primaryKey ?? setting('dofus129_accounts_primaryKey');
     }
 
     public function getForeignKey()

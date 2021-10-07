@@ -10,5 +10,7 @@
     "providers": [
         "\\Azuriom\\Plugin\\Dofus129\\Providers\\Dofus129ServiceProvider",
         "\\Azuriom\\Plugin\\Dofus129\\Providers\\RouteServiceProvider"
-    ]
+    ],
+    "installRedirectPath": "install/dofus129",
+    "apiId": 63
 }
