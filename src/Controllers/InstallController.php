@@ -89,7 +89,12 @@ class InstallController extends Controller
     
             $account->delete();
         } catch (\Throwable $th) {
-            return redirect()->route('dofus129.install.indexCharacterTable')->with('error', $th->getMessage())->withInput();
+            if ($th->errorInfo[1] == 1364) {
+                $str = $th->errorInfo[2].'<p><a href="https://github.com/Javdu10/Game-Dofus129#how-to-install" target="_blank">See the documentation to fix (click me)</a></p>';
+                return redirect()->route('dofus129.install.indexCharacterTable')->with('error', $str)->withInput();
+            } else {
+                return redirect()->route('dofus129.install.indexCharacterTable')->with('error', $th->getMessage())->withInput();
+            }
         }
 
         return redirect()->route('dofus129.install.indexAdminAccount');
