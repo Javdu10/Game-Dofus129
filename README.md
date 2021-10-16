@@ -6,7 +6,7 @@ Follow the installation process, it's very easy.
 Depending on how is setup your database you might see errors like:
 
 ```
-SQLSTATE[HY000]: General error: 1364 Field 'lastConnectionDate' doesn't have a default value (SQL: insert into `accounts` (`account`, `pseudo`, `pass`, `question`, `reponse`) values (TsO9QEd7, wGkv27uI, 7pcJXu8S, E2bQi60B, KVDr2lFM))
+Field 'lastConnectionDate' doesn't have a default value
 ```
 
 If you don't know how to fix this kind of error, look it up on google. 
