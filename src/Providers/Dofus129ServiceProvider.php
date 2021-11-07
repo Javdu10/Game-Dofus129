@@ -113,6 +113,8 @@ class Dofus129ServiceProvider extends BasePluginServiceProvider
 
         Event::listen(function (Registered $event) {
             $account = new Account();
+            $account->setKeyName(settings('dofus129_accounts_primaryKey'));
+
             $account->{setting('dofus129_accounts_nameCol')} = request()->input('name');
             $account->{setting('dofus129_accounts_pseudoCol')} = request()->input('name');
             $account->{setting('dofus129_accounts_passwordCol')} = $this->customHashForPassword(request()->input('password'));
