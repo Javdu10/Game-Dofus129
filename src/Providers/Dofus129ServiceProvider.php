@@ -113,6 +113,7 @@ class Dofus129ServiceProvider extends BasePluginServiceProvider
 
         Event::listen(function (Registered $event) {
             $account = new Account();
+            $account->setTable(setting('dofus129_accounts_tableName'));
             $account->setKeyName(setting('dofus129_accounts_primaryKey'));
 
             $account->{setting('dofus129_accounts_nameCol')} = request()->input('name');
