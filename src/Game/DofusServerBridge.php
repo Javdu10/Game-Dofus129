@@ -5,6 +5,7 @@ namespace Azuriom\Plugin\Dofus129\Game;
 use Azuriom\Games\ServerBridge;
 use Azuriom\Models\User;
 use RuntimeException;
+use Illuminate\Support\Facades\Storage;
 
 class DofusServerBridge extends ServerBridge
 {
