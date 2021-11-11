@@ -43,6 +43,7 @@ class DofusServerBridge extends ServerBridge
             ]
         );
 
+        $timeout = 1; // seconds
         $socket = stream_socket_client('ssl://'.$this->server->address.':'.$this->server->port,
             $errno,
             $errstr,
