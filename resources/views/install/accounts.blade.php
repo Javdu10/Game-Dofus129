@@ -4,7 +4,7 @@
 <h3>Step 2/ : Accounts Database</h3>
 <form action="{{ route('dofus129.install.setupAccountTable') }}" method="post">
     @csrf
-    <div class="form-group">
+    <div class="mb-3">
         <label for="ainputTableName" class="col-form-label">Table name :</label>
         
             <input name="dofus129_accounts_tableName"
@@ -15,7 +15,7 @@
         @enderror
         
     </div>
-    <div class="form-group">
+    <div class="mb-3">
         <label for="ainputIdCol" class="col-form-label">Id column :</label>
 
             <input name="dofus129_accounts_primaryKey"
@@ -25,7 +25,7 @@
         <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
         @enderror
     </div>
-    <div class="form-group">
+    <div class="mb-3">
         <label for="ainputUsernameCol" class="col-form-label">Username column :</label>
 
             <input 
@@ -36,7 +36,7 @@
         <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
         @enderror
     </div>
-    <div class="form-group">
+    <div class="mb-3">
         <label for="ainputPasswordCol" class="col-form-label">Password column :</label>
 
             <input name="dofus129_accounts_passwordCol" 
@@ -46,7 +46,7 @@
         <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
         @enderror
     </div>
-    <div class="form-group">
+    <div class="mb-3">
         <label for="ainputPseudoCol" class="col-form-label">Pseudo column :</label>
 
             <input name="dofus129_accounts_pseudoCol" 
@@ -56,7 +56,7 @@
         <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
         @enderror
     </div>
-    <div class="form-group">
+    <div class="mb-3">
         <label for="ainputQuestionCol" class="col-form-label">Question column :</label>
 
             <input name="dofus129_accounts_questionCol" 
@@ -66,7 +66,7 @@
             <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
             @enderror
     </div>
-    <div class="form-group">
+    <div class="mb-3">
         <label for="ainputAnswerCol" class="col-form-label">Answer column :</label>
 
             <input name="dofus129_accounts_answerCol" 
@@ -78,7 +78,7 @@
     </div>
     <div class="text-center">
         <button type="submit" class="btn btn-primary">
-            {{ trans('messages.actions.continue') }} <i class="fas fa-arrow-right"></i>
+            {{ trans('messages.actions.continue') }} <i class="bi bi-arrow-right"></i>
         </button>
     </div>
 </form>

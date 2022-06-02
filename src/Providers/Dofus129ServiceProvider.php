@@ -2,47 +2,26 @@
 
 namespace Azuriom\Plugin\Dofus129\Providers;
 
-use Azuriom\Models\Setting;
-use Illuminate\Support\Facades\Event;
-use Illuminate\Auth\Events\Registered;
+use Azuriom\Extensions\Plugin\BasePluginServiceProvider;
 use Azuriom\Plugin\Dofus129\Game\Dofus;
-use Azuriom\Providers\GameServiceProvider;
 use Azuriom\Plugin\Dofus129\Models\Account;
 use Azuriom\Plugin\Dofus129\Models\GameAndWebRelation;
-use Azuriom\Extensions\Plugin\BasePluginServiceProvider;
+use Azuriom\Providers\GameServiceProvider;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Event;
 
 class Dofus129ServiceProvider extends BasePluginServiceProvider
 {
-    /**
-     * The plugin's global HTTP middleware stack.
-     *
-     * @var array
-     */
-    protected $middleware = [];
+    protected array $middleware = [];
 
-    /**
-     * The plugin's route middleware groups.
-     *
-     * @var array
-     */
-    protected $middlewareGroups = [];
+    protected array $middlewareGroups = [];
 
-    /**
-     * The plugin's route middleware.
-     *
-     * @var array
-     */
-    protected $routeMiddleware = [
+    protected array $routeMiddleware = [
         // 'example' => \Azuriom\Plugin\Dofus129\Middleware\ExampleRouteMiddleware::class,
     ];
 
-    /**
-     * The policy mappings for this plugin.
-     *
-     * @var array
-     */
-    protected $policies = [
+    protected array $policies = [
         // User::class => UserPolicy::class,
     ];
 
@@ -53,7 +32,7 @@ class Dofus129ServiceProvider extends BasePluginServiceProvider
      */
     public function register()
     {
-        //$this->registerMiddlewares();
+        // $this->registerMiddlewares();
 
         GameServiceProvider::registerGames(['dofus129' => Dofus::class]);
     }
@@ -71,17 +50,9 @@ class Dofus129ServiceProvider extends BasePluginServiceProvider
 
         $this->loadTranslations();
 
-        //$this->loadMigrations();
-
         $this->registerRouteDescriptions();
 
         $this->registerAdminNavigation();
-
-        //$this->registerUserNavigation();
-
-        // if (! setting()->has('dofus129_accounts_nameCol')) {
-        //     $this->createDofusSettings();
-        // }
 
         if (is_installed()) {
             $this->setupConnections();
@@ -133,36 +104,6 @@ class Dofus129ServiceProvider extends BasePluginServiceProvider
     protected function customHashForPassword($password)
     {
         return eval('return '.setting('dofus129_customHashalgo'));
-    }
-
-    protected function createDofusSettings()
-    {
-        Setting::updateSettings([
-            'dofus129_create_account_on_registration' => 0,
-            'dofus129_customHashalgo' => 'hash("sha512", hash("md5", $password));',
-
-            'dofus129_accounts_databaseName' => 'accounts_database',
-            'dofus129_accounts_tableName' => 'accounts_table',
-            'dofus129_accounts_primaryKey' => 'accounts_primaryKey',
-            'dofus129_accounts_foreignKey' => 'accounts_foreignKey',
-            'dofus129_accounts_nameCol' => 'accounts_name',
-            'dofus129_accounts_passwordCol' => 'accounts_password',
-            'dofus129_accounts_pseudoCol' => 'accounts_pseudo',
-            'dofus129_accounts_questionCol' => 'accounts_question',
-            'dofus129_accounts_answerCol' => 'accounts_answer',
-            //'dofus129_accounts_loggedCol' => ['nullable', 'string'],
-
-            'dofus129_characters_databaseName' => 'characters_database',
-            'dofus129_characters_tableName' => 'characters_table',
-            'dofus129_characters_primaryKey' => 'characters_primaryKey',
-            'dofus129_characters_nameCol' => 'characters_name',
-            'dofus129_characters_sexeCol' => 'characters_sexe',
-            'dofus129_characters_classCol' => 'characters_class',
-            'dofus129_characters_levelCol' => 'characters_level',
-            'dofus129_characters_experienceCol' => 'characters_experience',
-            'dofus129_characters_alignementCol' => 'characters_alignement',
-            'dofus129_characters_honorCol' => 'characters_honor',
-        ]);
     }
 
     /**

@@ -7,6 +7,7 @@
     "authors": [
         "Javdu10"
     ],
+    "azuriom_api": "1.0.0",
     "providers": [
         "\\Azuriom\\Plugin\\Dofus129\\Providers\\Dofus129ServiceProvider",
         "\\Azuriom\\Plugin\\Dofus129\\Providers\\RouteServiceProvider"

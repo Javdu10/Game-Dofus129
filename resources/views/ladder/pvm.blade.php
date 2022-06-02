@@ -6,7 +6,7 @@
 <div class="container content">
     <div class="table-responsive">
         <table class="table table-striped">
-            <thead class="thead-dark">
+            <thead class="table-dark">
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col"><img src="{{plugin_asset('dofus129', "img/none.png")}}" alt="" srcset=""></th>
