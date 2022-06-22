@@ -3,7 +3,6 @@
 @section('title', 'Players')
 
 @section('content')
-<div class="container content">
     <div class="table-responsive">
         <table class="table table-striped">
             <thead class="table-dark">
@@ -34,5 +33,4 @@
         </table>
     </div>
     {{$characters->links()}}
-</div>
 @endsection

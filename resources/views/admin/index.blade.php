@@ -7,7 +7,7 @@
     <div class="card-body">
         <form action="{{route('dofus129.admin.settings')}}" method="POST">
             @csrf
-            <div class="form-group mt-3">
+            <div class="mb-3 mt-3">
                 <div class="row">
                     <div class="col">
                         <div class="custom-control custom-switch">
@@ -18,7 +18,7 @@
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="mb-3">
                 <label for="dofus129_customHashalgo">Custom hash algo :</label>
                 
                 <input name="dofus129_customHashalgo" value="{{ old('dofus129_customHashalgo', setting('dofus129_customHashalgo')) }}" type="text" class="form-control" id="dofus129_customHashalgo" placeholder="pseudo" aria-describedby="hashHelp">
