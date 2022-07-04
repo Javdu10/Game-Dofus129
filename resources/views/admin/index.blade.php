@@ -21,10 +21,15 @@
             <div class="mb-3">
                 <label for="dofus129_customHashalgo">Custom hash algo :</label>
                 
-                <input name="dofus129_customHashalgo" value="{{ old('dofus129_customHashalgo', setting('dofus129_customHashalgo')) }}" type="text" class="form-control" id="dofus129_customHashalgo" placeholder="pseudo" aria-describedby="hashHelp">
+                <input name="dofus129_customHashalgo" value="{{ old('dofus129_customHashalgo', setting('dofus129_customHashalgo', '$password;')) }}" type="text" class="form-control" id="dofus129_customHashalgo" aria-describedby="hashHelp">
                 <small id="hashHelp" class="form-text text-muted">
                     It's PHP code that will go through the <code>eval()</code> function <br>
-                    You have access the to <code>$password</code> variable.
+                    You have access the to <code>$password</code> variable. <br>
+                    Example ( don't forget the <span class="fs-4"><b>;</b></span> ): <br>
+                    <ul>
+                        <li><code>hash('sha256', $password);</code> --> if your emulator use sha256 hash algo.</li>
+                        <li><code>$password;</code> --> if the passwords are plain</li>
+                    </ul>
                 </small>
             </div>
 

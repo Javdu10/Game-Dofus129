@@ -2,8 +2,6 @@
 
 namespace Azuriom\Plugin\Dofus129\Models;
 
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 
 class Account extends Model
@@ -13,12 +11,12 @@ class Account extends Model
 
     public function getTable()
     {
-        return $this->table ?? setting('dofus129_accounts_tableName');
+        return setting('dofus129_accounts_tableName', $this->table);
     }
 
     public function getKeyName()
     {
-        return $this->primaryKey ?? setting('dofus129_accounts_primaryKey');
+        return setting('dofus129_accounts_primaryKey', $this->primaryKey);
     }
 
     public function getForeignKey()

@@ -12,3 +12,10 @@ if (! function_exists('dofus_characters')) {
         })->flatten();
     }
 }
+
+if (! function_exists('dofus_customHashForPassword')) {
+    function dofus_customHashForPassword(string $password)
+    {
+        return eval('return '.setting('dofus129_customHashalgo', '$password;'));
+    }
+}

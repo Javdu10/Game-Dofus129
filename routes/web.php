@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use Azuriom\Plugin\Dofus129\Controllers\LadderController;
 use Azuriom\Plugin\Dofus129\Controllers\Dofus129HomeController;
+use Azuriom\Plugin\Dofus129\Controllers\LadderController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +22,9 @@ Route::prefix('ladder')->name('ladder.')->group(function () {
 });
 
 Route::post('/update_character', [Dofus129HomeController::class, 'update_character'])->name('update_character');
+
+Route::prefix('accounts')->name('accounts.')->middleware('auth')->group(function () {
+    Route::get('/', [Dofus129HomeController::class, 'index'])->name('index');
+    Route::post('/', [Dofus129HomeController::class, 'store'])->name('store');
+    Route::post('/update/{accountId}/new-password', [Dofus129HomeController::class, 'updatePassword'])->name('update-password');
+});

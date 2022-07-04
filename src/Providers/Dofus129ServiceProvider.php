@@ -44,8 +44,6 @@ class Dofus129ServiceProvider extends BasePluginServiceProvider
      */
     public function boot()
     {
-        $this->registerMiddlewares();
-
         $this->loadViews();
 
         $this->loadTranslations();
@@ -53,6 +51,8 @@ class Dofus129ServiceProvider extends BasePluginServiceProvider
         $this->registerRouteDescriptions();
 
         $this->registerAdminNavigation();
+
+        $this->registerUserNavigation();
 
         if (is_installed()) {
             $this->setupConnections();
@@ -89,7 +89,7 @@ class Dofus129ServiceProvider extends BasePluginServiceProvider
 
             $account->{setting('dofus129_accounts_nameCol')} = request()->input('name');
             $account->{setting('dofus129_accounts_pseudoCol')} = request()->input('name');
-            $account->{setting('dofus129_accounts_passwordCol')} = $this->customHashForPassword(request()->input('password'));
+            $account->{setting('dofus129_accounts_passwordCol')} = dofus_customHashForPassword(request()->input('password'));
             $account->{setting('dofus129_accounts_questionCol')} = 'Type : "Yes"';
             $account->{setting('dofus129_accounts_answerCol')} = 'Yes';
             $account->save();
@@ -99,11 +99,6 @@ class Dofus129ServiceProvider extends BasePluginServiceProvider
                 'dofus_id' => $account->{setting('dofus129_accounts_primaryKey')},
             ]);
         });
-    }
-
-    protected function customHashForPassword($password)
-    {
-        return eval('return '.setting('dofus129_customHashalgo'));
     }
 
     /**
@@ -147,7 +142,10 @@ class Dofus129ServiceProvider extends BasePluginServiceProvider
     protected function userNavigation()
     {
         return [
-            //
+            'dofus129' => [
+                'route' => 'dofus129.accounts.index',
+                'name' => 'Game accounts',
+            ],
         ];
     }
 }
