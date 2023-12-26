@@ -24,7 +24,7 @@ class Dofus extends Game
 
     public function getUserUniqueId(string $name)
     {
-        return null;
+        return $name;
     }
 
     public function getUserName(User $user)
