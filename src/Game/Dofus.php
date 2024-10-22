@@ -17,9 +17,9 @@ class Dofus extends Game
         return 'dofus129';
     }
 
-    public function getAvatarUrl(User $user, int $size = 64)
+    public function getAvatarUrl(User $user, int $size = 64): string
     {
-        return null;
+        return 'https://www.gravatar.com/avatar/'.md5($user->email ?? '').'?d=mp&s='.$size;
     }
 
     public function getUserUniqueId(string $name)
